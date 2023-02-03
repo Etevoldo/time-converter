@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "mytime.h"
 
-char * convert_time(int user_time, char time12h[]){
+char *convert_time(int user_time, char time12h[]){
         int hour, minute;
 
         hour   = user_time / 60;

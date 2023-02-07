@@ -11,9 +11,9 @@ char *convert_time(int, char []);
 
 /************************************************************************************
  * minutes_convert: returns minutes after midnight from a variety of formats,       *
- * 		    like 09hr30min PM, 09:30pm, 09:30am 		            *
- * 		    only argument is a string (with at maximum of 11 characters.    *
- * 		    returns a negative value on error.    			    *
+ * 		    like 09hr30min PM, 09:30pm, 09:30am, 12:30PM, 13:00	            *
+ * 		    only argument is a string (with at maximum of 11 characters)    *
+ * 		    returns a -1  value on error.        			    *
  ***********************************************************************************/
 int minutes_convert(const char string[]);
 #endif

@@ -16,4 +16,8 @@ char *convert_time(int, char []);
  * 		    returns a negative value on error.    			    *
  ***********************************************************************************/
 int minutes_convert(const char string[]);
+
+// advances time by a given amount in minutes
+void fwd_time(char string[], int adv);
+
 #endif

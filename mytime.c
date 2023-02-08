@@ -32,7 +32,7 @@ int minutes_convert(const char string[]){
 		return -1;
 
 	s = strcpy(copy, string);
-	while (*s){                                               //upper case the copy
+	while (*s){         //upper case the copy
 		*s = toupper((unsigned int) *s);
 		s++;
 	}
@@ -44,9 +44,23 @@ int minutes_convert(const char string[]){
 
 	sscanf(copy, "%2d%*[^0123456789]%2d", &hr, &min);
 	if (hr == 12)
-		is_pm = false;                                    //in case of 12:xxPM date situations
-	if (min >= 60 || (is_pm && hr >= 13) || (is_am && hr >= 12) || hr >= 24)  //invalid hours
+		is_pm = false;      //in case of 12:xxPM date situations
+	if (min >= 60 || (is_pm && hr >= 13) || (is_am && hr >= 12) || hr >= 24)  
+		//invalid hours
 		return -1;
 	
 	return (hr * MIN_IN_HOUR) + min + (is_pm * 720);
+}
+
+void fwd_time(char string[], int adv){
+	int pmm;
+
+	pmm = minutes_convert(string);
+	pmm += adv;
+	if (pmm >= 1440);
+		pmm -= 1440;
+
+	convert_time(pmm, string);
+
+	return;
 }

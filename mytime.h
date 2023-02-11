@@ -2,12 +2,12 @@
 #define MYTIME_H
 
 /************************************************************************************
- * convert time : Returns a time with the format HH:MM a.m. or p.m., 12 hour format *
+ * convert time : Returns a time with the format HH:MM AM or PM or 24HRS            *
  *               first argument is minutes post midnight, second argumento is a     *
  *               character array with at minimum 11 elements, which will be filled  *
  *               with the format described here (also returning a pointer to it)    *
  ************************************************************************************/
-char *convert_time(int, char []);
+char *convert_time(int, char [], int);
 
 /************************************************************************************
  * minutes_convert: Returns minutes after midnight from a variety of formats,       *
@@ -17,7 +17,10 @@ char *convert_time(int, char []);
  ***********************************************************************************/
 int minutes_convert(const char string[]);
 
-// advances time by a given amount in minutes
+/********************************************************************* 
+ * fwd_time: advances time in string by an integer amount of minutes *
+ *	     does loop in case it reaches midnight                   *
+ * *******************************************************************/
 void fwd_time(char string[], int adv);
 
 #endif

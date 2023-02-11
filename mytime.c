@@ -8,18 +8,20 @@
 #define MIN_IN_HOUR 60
 #define MAX_TIME_SIZE 11
 
-char *convert_time(int user_time, char time12h[]){
+char *convert_time(int user_time, char time12h[], int type){
         int hour, minute;
 
         hour   = user_time / MIN_IN_HOUR;
         minute = user_time % MIN_IN_HOUR;
 
-        if (hour > 12)
-                hour -= 12;
+	if (type == 1){
+		if (hour > 12)
+			hour -= 12;
+	}
 
-        sprintf(time12h, "%.2d:%.2d %s",
-                hour, minute, (user_time >= 720) ? "p.m." : "a.m.");
-
+        if (type == 1)
+		sprintf(time12h, "%.2d:%.2d %s", hour, minute, (user_time >= 720) ? "PM" : "AM");
+	else sprintf(time12h, "%.2d:%.2d", hour, minute);
         return time12h;
 }
 
@@ -53,14 +55,14 @@ int minutes_convert(const char string[]){
 }
 
 void fwd_time(char string[], int adv){
-	int pmm;
+	int cur_time;
 
-	pmm = minutes_convert(string);
-	pmm += adv;
-	if (pmm >= 1440);
-		pmm -= 1440;
+	cur_time = minutes_convert(string);
+	cur_time += adv;
+	if (cur_time >= 1440)
+		cur_time -= 1440;
 
-	convert_time(pmm, string);
+	convert_time(cur_time, string, 0);
 
 	return;
 }
